@@ -29,17 +29,17 @@
 | prefecture_id       | integer    | null: false                    |
 | delivery_date_id    | integer    | null: false                    |
 | price               | integer    | null: false                    |
-| user              | references | null: false foreign_key:true   |
+| user                | references | null: false foreign_key:true   |
 
 ### Association
 - has_one: purchase
 - has_many: comments  
-- belong-to: user
-- belong_to_active_hash :status
-- belong_to_active_hash :category
-- belong_to_active_hash :delivery_type
-- belong_to_active_hash :prefecture
-- belong_to_active_hash :delivery_date
+- belongs-to: user
+- belongs_to_active_hash :status
+- belongs_to_active_hash :category
+- belongs_to_active_hash :delivery_type
+- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :delivery_date
 
 
 ## Purchasesテーブル
@@ -51,8 +51,8 @@
 
 
 ### Association
-- belong-to: item
-- belong-to: user
+- belongs-to: item
+- belongs-to: user
 - has_one: address  
 
 
@@ -60,15 +60,15 @@
 
 | Column              | Type       | Options                        |
 | ------              | ---------- | ------------------------------ |
-| zip_code            | string     | null: false foreign_key:true   |
+| zip_code            | integer    | null: false foreign_key:true   |
 | prefecture_id       | integer    | null: false foreign_key:true   |
 | city                | string     | null: false foreign_key:true   |
 | block_number        | string     | null: false foreign_key:true   |
-| building_name       | string     |                                |
-| phone_number        | string     | null: false foreign_key:true   |
+| building_name       | string     | foreign_key:true               |
+| phone_number        | integer    | null: false foreign_key:true   |
 
 ### Association
-- belong_to: purchase
+- belongs_to: purchase
 
 ## Commentsテーブル
 
@@ -81,6 +81,6 @@
 
 ### Association
 - has_many: users
-- has_one: item  
+- belongs_to: item  
 
 
