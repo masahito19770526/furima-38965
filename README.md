@@ -13,7 +13,6 @@
 
 ### Association
 - has_many: items
-- has_many: comments 
 - has_many: purchases 
 
 
@@ -33,8 +32,7 @@
 
 ### Association
 - has_one: purchase
-- has_many: comments  
-- belongs-to: user
+- belongs_to: user
 - belongs_to_active_hash :status
 - belongs_to_active_hash :category
 - belongs_to_active_hash :delivery_type
@@ -51,8 +49,8 @@
 
 
 ### Association
-- belongs-to: item
-- belongs-to: user
+- belongs_to: item
+- belongs_to: user
 - has_one: address  
 
 
@@ -60,27 +58,17 @@
 
 | Column              | Type       | Options                        |
 | ------              | ---------- | ------------------------------ |
-| zip_code            | integer    | null: false foreign_key:true   |
-| prefecture_id       | integer    | null: false foreign_key:true   |
-| city                | string     | null: false foreign_key:true   |
-| block_number        | string     | null: false foreign_key:true   |
+| zip_code            | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| city                | string     | null: false                    |
+| block_number        | string     | null: false                    |
 | building_name       | string     | foreign_key:true               |
-| phone_number        | integer    | null: false foreign_key:true   |
+| phone_number        | string     | null: false unique:true        |
+| purchase            | references | null: false foreign_key:true   |
 
 ### Association
 - belongs_to: purchase
 
-## Commentsテーブル
 
-| Column              | Type       | Options                        |
-| ------              | ---------- | ------------------------------ |
-| comment             | text       | null: false                    |
-| user                | references | null: false foreign_key:true   |
-| item                | references | null: false foreign_key:true   |
-
-
-### Association
-- has_many: users
-- belongs_to: item  
 
 
