@@ -18,7 +18,7 @@ RSpec.describe Item, type: :model do
         it 'imageが空だと登録できない' do
           @item.image = nil
           @item.valid?
-          expect(@item.errors.full_messages).to include("Image can't be blank")
+          expect(@item.errors.full_messages).to include("Image ファイルを添付してください")
         end
         it 'nameが空だと登録できない' do
           @item.name = ''
@@ -30,30 +30,28 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include("Description can't be blank")
         end
-        it 'category_idが空だと登録できない' do
-          @item.category_id = ''
+        it 'category_idが1(「---])だと登録できない' do
+          @item.category_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Category can't be blank")
         end
-
-        it 'status_idが空だと登録できない' do
-          @item.status_id = ''
+        it 'status_idが1(「---])だと登録できない' do
+          @item.status_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Status can't be blank")
         end
-
-        it 'delivery_type_idが空だと登録できない' do
-          @item.delivery_type_id = ''
+        it 'delivery_type_idが1(「---])だと登録できない' do
+          @item.delivery_type_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Delivery type can't be blank")
         end
-        it 'shipping_area_idが空だと登録できない' do
-          @item.prefecture_id = ''
-          @item.valid?
-          expect(@item.errors.full_messages).to include("Prefecture can't be blank")
-        end
-        it 'days_to_ship_idが空だと登録できない' do
+        it 'delivery_date_idが空だと登録できない' do
           @item.delivery_date_id = ''
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Delivery date can't be blank")
+        end
+        it 'delivery_date_idが1(「---])だと登録できない' do
+          @item.delivery_date_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Delivery date can't be blank")
         end
@@ -76,6 +74,11 @@ RSpec.describe Item, type: :model do
           @item.price = '３００'
           @item.valid?
           expect(@item.errors.full_messages).to include("Price is not a number")
+        end
+        it 'ユーザーが紐づいていない場合出品できない'do
+          @item.user = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include("User must exist")
         end
       end
     end

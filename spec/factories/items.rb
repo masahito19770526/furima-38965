@@ -9,9 +9,6 @@ FactoryBot.define do
     prefecture_id         { '2' }
     delivery_date_id      { '2' }
     price                 {Faker::Number.within(range: 300..9_999_999) }
-    user_id               {1}
-    created_at            {1}
-    updated_at            {1}
     association :user
 
     after(:build) do |item|
