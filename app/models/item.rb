@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :delivery_date_id
   end
-  with_options presence: true do 
+  with_options presence: true do
     validates :image
     validates :name
     validates :description
