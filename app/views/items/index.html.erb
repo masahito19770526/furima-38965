@@ -127,12 +127,21 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
+
       <% @items.each do |item| %>
       <li class='list'>
         <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
+
+          <% if item.purchase.present? %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <% end %>
+
         </div>
+
         <div class='item-info'>
           <h3 class='item-name'>
             <%= item.name %>
@@ -148,6 +157,7 @@
         <% end %>
       </li>
       <% end %>
+
       <% if @items.blank? %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -167,6 +177,7 @@
         <% end %>
       </li>
       <% end %>
+
     </ul>
   </div>
   <%# /商品一覧 %>
